@@ -1,12 +1,12 @@
+'use strict'
+
 function dogApp() {
     return {
         mostrar: false,
-        carregando: false,
         imagem: '',
-        raca: '', // armazena a raça selecionada
+        raca: '', 
         async buscarDog() {
             this.mostrar = true;
-            this.carregando = true;
             let url = 'https://dog.ceo/api/breeds/image/random';
             if (this.raca) {
                 url = `https://dog.ceo/api/breed/${this.raca}/images/random`;
@@ -16,9 +16,8 @@ function dogApp() {
                 const data = await res.json();
                 this.imagem = data.message;
             } catch (e) {
-                alert("Erro ao buscar doguinho 😢");
+                alert("Erro ao buscar doguinho");
             }
-            this.carregando = false;
         },
         fechar() {
             this.mostrar = false;

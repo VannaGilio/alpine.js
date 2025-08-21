@@ -9,9 +9,8 @@
 </head>
 <body>
   <div x-data="dogApp()">
-    <h1>🐶 Dog API + Alpine.js</h1>
+    <h1>Dog API + Alpine.js</h1>
 
-    <!-- Seleção de raça -->
     <label for="raca">Escolha uma raça:</label>
     <select id="raca" x-model="raca">
       <option value="">Aleatória</option>
@@ -24,25 +23,17 @@
 
     <br><br>
 
-    <!-- Botões -->
     <button @click="buscarDog()">Exibir Imagem</button>
 
-    <!-- Modal -->
     <template x-if="mostrar">
       <div class="modal">
-        <template x-if="carregando">
-          <p>⏳ Carregando doguinho...</p>
-        </template>
-
-        <template x-if="!carregando">
+        <div>
+          <img :src="imagem" alt="Cachorro aleatório">
           <div>
-            <img :src="imagem" alt="Cachorro aleatório">
-            <div>
-              <button @click="buscarDog()">Próxima 🐾</button>
-              <button class="fechar" @click="fechar()">Fechar ❌</button>
-            </div>
+            <button @click="buscarDog()">Próxima</button>
+            <button class="fechar" @click="fechar()">Fechar</button>
           </div>
-        </template>
+        </div>
       </div>
     </template>
   </div>
