@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOG API</title>
+  <script src="https://unpkg.com/alpinejs" defer></script>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div x-data="dogApp()">
+    <h1>🐶 Dog API + Alpine.js</h1>
+
+    <!-- Seleção de raça -->
+    <label for="raca">Escolha uma raça:</label>
+    <select id="raca" x-model="raca">
+      <option value="">Aleatória</option>
+      <option value="husky">Husky</option>
+      <option value="beagle">Beagle</option>
+      <option value="labrador">Labrador</option>
+      <option value="pug">Pug</option>
+      <option value="dalmatian">Dalmatian</option>
+    </select>
+
+    <br><br>
+
+    <!-- Botões -->
+    <button @click="buscarDog()">Exibir Imagem</button>
+
+    <!-- Modal -->
+    <template x-if="mostrar">
+      <div class="modal">
+        <template x-if="carregando">
+          <p>⏳ Carregando doguinho...</p>
+        </template>
+
+        <template x-if="!carregando">
+          <div>
+            <img :src="imagem" alt="Cachorro aleatório">
+            <div>
+              <button @click="buscarDog()">Próxima 🐾</button>
+              <button class="fechar" @click="fechar()">Fechar ❌</button>
+            </div>
+          </div>
+        </template>
+      </div>
+    </template>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
